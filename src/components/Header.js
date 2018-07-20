@@ -9,7 +9,7 @@ class Header extends Component {
       <div style={divStyle.all} class="row">
         <div class="left-align">
           <div class="col s6">
-          <h4> PCP </h4>
+          <h4> PCP HD </h4>
             <a class="waves-effect waves-light btn-small" href="#">Home</a>
             <a class="waves-effect waves-light btn-small" href="#">About PCP</a>
           </div>
