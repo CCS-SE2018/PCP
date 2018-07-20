@@ -29,16 +29,18 @@ class HomePage extends Component {
         <div>
             <div class="container">
                 <h3 style={{textAlign: 'center'}}>PRICE CHECKER PROGRAM</h3>
-
-                <form class="col s12">
+               
+                <form class="col s6">
                     <label>
                         Product
                         <input type="text" name="name" onChange={this.onChange.bind(this)}/>
                     </label>
+                    <div class="row" style={{textAlign: 'center'}}>
                     <Button waves='light' onClick={this.handleClick.bind(this)}>Search</Button>
+                </div>
                 </form>
-                <p>Search string: {this.state.text}</p>
 
+                <p>Search string: {this.state.text}</p>
             </div>
         </div>
         );
