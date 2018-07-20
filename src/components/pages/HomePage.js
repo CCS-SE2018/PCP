@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import '../../../node_modules/materialize-css/dist/css/materialize.css';
 
-import Header from '../Header.js'
 
-
-//TODO make this a router
+import {Button} from 'react-materialize';
 
 class HomePage extends Component {
     constructor(props){
@@ -16,29 +14,31 @@ class HomePage extends Component {
 
     handleClick(){
         console.log(this.state);
+        alert("Hello " + this.state.text);
     }
 
     onChange(event){
         console.log("Change " + event.target.value);
         this.setState({
-        text : event.target.value,
+            text : event.target.value,
         });
     }
 
     render() {
         return (
         <div>
-            <Header />
             <div class="container">
-                <h3>PRICE CHECKER PROGRAM</h3>
-                <form>
-                <label>
-                    Product
-                    <input type="text" name="name" onChange={this.onChange.bind(this)}/>
-                </label>
-                <input class="waves-effect white blue-text btn-small" type="submit" value="Submit" onClick={this.handleClick.bind(this)}/>
+                <h3 style={{textAlign: 'center'}}>PRICE CHECKER PROGRAM</h3>
+
+                <form class="col s12">
+                    <label>
+                        Product
+                        <input type="text" name="name" onChange={this.onChange.bind(this)}/>
+                    </label>
+                    <Button waves='light' onClick={this.handleClick.bind(this)}>Search</Button>
                 </form>
                 <p>Search string: {this.state.text}</p>
+
             </div>
         </div>
         );

@@ -5,67 +5,52 @@ import {
   Link
 } from 'react-router-dom'
 
+import HomePage from './components/pages/HomePage'
+import AboutPage from './components/pages/About'
+import LoginPage from './components/pages/Login'
+
+//Links go here
 const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
+  <HomePage />
 )
-
 const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
+  <AboutPage />
+)
+const Login = () => (
+  <LoginPage />
 )
 
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-)
-
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-          Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
-        </Link>
-      </li>
-    </ul>
-
-    <Route path={`${match.path}/:topicId`} component={Topic}/>
-    <Route exact path={match.path} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-)
-
+//Start of Router
 const RouterBoi = () => (
   <Router>
     <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About PCP</Link></li>
-        <li><Link to="/topics">Login/Sign Out</Link></li>
-      </ul>
-
-      <hr/>
+      <div class="row" style={divStyle.all}>
+        <div class="left-align">
+          <div class="col s6">
+            <Link to="/"><a class="waves-effect waves-light btn-small">Home</a></Link>
+            <Link to="/about"><a class="waves-effect waves-light btn-small">About PCP</a></Link>
+          </div>
+        </div>
+        <div class="right-align">
+          <div class="col s6" >
+            <Link to="/login"><a class="waves-effect waves-light btn-small">Login / SignUp</a></Link>
+          </div>
+        </div>
+      </div>
 
       <Route exact path="/" component={Home}/>
       <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
+      <Route path="/login" component={Login}/>
     </div>
   </Router>
 )
+
+
+const divStyle = {
+  all : {
+    height : 50,
+    backgroundColor : '#000000',
+    padding : 10,
+  },
+};
 export default RouterBoi
