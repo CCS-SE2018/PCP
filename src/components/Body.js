@@ -11,7 +11,6 @@ class Body extends Component {
   }
 
   handleClick(){
-    alert("Hello " + this.state.text);
     console.log(this.state);
   }
 
@@ -21,6 +20,7 @@ class Body extends Component {
       text : event.target.value,
     });
   }
+
   render() {
     return (
       <div class="container">
@@ -32,6 +32,7 @@ class Body extends Component {
           </label>
           <input class="waves-effect white blue-text btn-small" type="submit" value="Submit" onClick={this.handleClick.bind(this)}/>
         </form>
+	<p>Search string: {this.state.text}</p>
       </div>
     );
   }
