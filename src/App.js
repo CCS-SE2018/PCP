@@ -7,6 +7,8 @@ import Body from './components/Body.js'
 
 import {Button, Icon } from 'react-materialize';
 
+//TODO make this a router
+
 class App extends Component {
   render() {
     return (
