@@ -24,7 +24,7 @@ class Body extends Component {
   render() {
     return (
       <div class="container">
-        <h3>Hello world</h3>
+        <h3>PRICE CHECKER PROGRAM</h3>
         <form>
           <label>
             Product
