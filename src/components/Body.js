@@ -24,6 +24,7 @@ class Body extends Component {
   render() {
     return (
       <div class="container">
+        {/*GENERIC BODY DON'T TOUCH*/}
         <h3>PRICE CHECKER PROGRAM</h3>
         <form>
           <label>
@@ -32,7 +33,7 @@ class Body extends Component {
           </label>
           <input class="waves-effect white blue-text btn-small" type="submit" value="Submit" onClick={this.handleClick.bind(this)}/>
         </form>
-	<p>Search string: {this.state.text}</p>
+	      <p>Search string: {this.state.text}</p>
       </div>
     );
   }
