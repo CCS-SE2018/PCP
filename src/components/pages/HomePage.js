@@ -29,7 +29,7 @@ class HomePage extends Component {
 
     render() {
         return (
-        <div style={{backgroundColor:'black', color : 'yellow'}}>
+        <div>
             <Column 
                 horizontal='center' 
                 flexGrow={1}>
