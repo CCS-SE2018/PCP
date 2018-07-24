@@ -9,6 +9,10 @@ import HomePage from './components/pages/HomePage'
 import AboutPage from './components/pages/About'
 import LoginPage from './components/pages/Login'
 
+import {Row, Column} from 'simple-flexbox'
+
+import Button from '@material-ui/core/Button'
+
 //Links go here
 const Home = () => (
   <HomePage />
@@ -20,23 +24,27 @@ const Login = () => (
   <LoginPage />
 )
 
+
+
 //Start of Router
 const RouterBoi = () => (
   <Router>
     <div>
-      <div class="row" style={divStyle.all}>
-        <div class="left-align">
-          <div class="col s6">
-            <Link to="/"><a class="waves-effect waves-light btn-small">Home</a></Link>
-            <Link to="/about"><a class="waves-effect waves-light btn-small">About PCP</a></Link>
-          </div>
-        </div>
-        <div class="right-align">
-          <div class="col s6" >
-            <Link to="/login"><a class="waves-effect waves-light btn-small">Login / SignUp</a></Link>
-          </div>
-        </div>
-      </div>
+      <Row vertical='center' horizontal='spaced' flexGrow='1' justifyItems='space-around' style={divStyle.all}>
+          <Row vertical='center' horizontal='spaced' flexGrow='1' alignItems='start'>
+            <Row>
+              <Link to="/">
+                <Button color="inherit" variant='outlined' style={{backgroundColor : '#999999', color : 'white' }}>Home</Button>
+              </Link>
+              <Link to="/about">
+                <Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>About PCP</Button>
+              </Link>
+            </Row>
+          </Row>
+          <Column flexGrow='1' alignItems='end'>
+            <Link to="/login"><Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>Login/Signup</Button></Link>
+          </Column>
+      </Row>
 
       <Route exact path="/" component={Home}/>
       <Route path="/about" component={About}/>
