@@ -21,7 +21,7 @@ class Login extends Component {
         console.log("componentWillMount");
         this.getThings();
     }
-    
+
     getThings(){
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
@@ -95,11 +95,43 @@ class Login extends Component {
                         </div>
                         </Card>
                     </Row>
-    
-                    <Row>
-                    </Row>
+
+                    <Column>
+                          <TextField
+                              id="fname"
+                              label="First Name"
+                              value={this.state.username}
+                              onChange={this.onChange.bind(this)}
+                              margin="normal"
+                          />
+                          <TextField
+                              id="lname"
+                              label="Last Name"
+                              value={this.state.username}
+                              onChange={this.onChange.bind(this)}
+                              margin="normal"
+                          />
+                          <TextField
+                              id="name"
+                              label="User Name"
+                              value={this.state.username}
+                              onChange={this.onChange.bind(this)}
+                              margin="normal"
+                          />
+                          <TextField
+                              id="password"
+                              label="Password"
+                              value={this.state.password}
+                              onChange={this.onChange.bind(this)}
+                              margin="normal"
+                              type="password"
+                          />
+                    </Column>
+                    <Column flexGrow={.15}>
+                        <Button variant="contained" onClick={this.login.bind(this)}>Signup</Button>
+                    </Column>
                 </Column>
-            
+
             </div>
         </div>
         );
