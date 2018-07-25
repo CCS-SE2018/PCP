@@ -5,6 +5,7 @@ import {
   Link
 } from 'react-router-dom'
 
+
 import HomePage from './components/pages/HomePage'
 import AboutPage from './components/pages/About'
 import LoginPage from './components/pages/Login'
@@ -12,6 +13,8 @@ import LoginPage from './components/pages/Login'
 import {Row, Column} from 'simple-flexbox'
 
 import Button from '@material-ui/core/Button'
+
+import './App.css'
 
 //Links go here
 const Home = () => (

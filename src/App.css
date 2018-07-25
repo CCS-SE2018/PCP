@@ -1,4 +1,6 @@
-
+.container{
+  padding: 20px;
+}
 
 .App-header {
   background-color: #222;
