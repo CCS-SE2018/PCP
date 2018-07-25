@@ -12,6 +12,8 @@ class Login extends Component {
     constructor(props){
         super(props)
         this.state = {
+            fName : '',
+            lName : '',
             username : '',
             password : '',
         };
@@ -30,8 +32,10 @@ class Login extends Component {
 
     onChange(event){
         switch(event.target.id){
-            case 'name': this.setState({ username : event.target.value}); break;
+            case 'username': this.setState({ username : event.target.value}); break;
             case 'password' : this.setState({ password : event.target.value}); break;
+            case 'fName' : this.setState({ fName : event.target.value}); break;
+            case 'lName' : this.setState({ lName : event.target.value}); break;
             default : console.log("this wasn't supposed to happen."); break;
         }
         console.log(event.target);
@@ -46,8 +50,8 @@ class Login extends Component {
     signup(){
         console.log("signup button pressed!");
         const credentials = { 
-            firstName : this.state.firstName,
-            lastName : this.state.lastName,
+            firstName : this.state.fName,
+            lastName : this.state.lName,
             username : this.state.username,
             password : this.state.password,
         }
@@ -57,7 +61,6 @@ class Login extends Component {
         return (
         <div>
             <div class="container">
-                <h1>Login/Signup</h1>
                 <Column>
                     <Row>
                         <Card>
@@ -96,40 +99,71 @@ class Login extends Component {
                         </Card>
                     </Row>
 
-                    <Column>
-                          <TextField
-                              id="fname"
-                              label="First Name"
-                              value={this.state.username}
-                              onChange={this.onChange.bind(this)}
-                              margin="normal"
-                          />
-                          <TextField
-                              id="lname"
-                              label="Last Name"
-                              value={this.state.username}
-                              onChange={this.onChange.bind(this)}
-                              margin="normal"
-                          />
-                          <TextField
-                              id="name"
-                              label="User Name"
-                              value={this.state.username}
-                              onChange={this.onChange.bind(this)}
-                              margin="normal"
-                          />
-                          <TextField
-                              id="password"
-                              label="Password"
-                              value={this.state.password}
-                              onChange={this.onChange.bind(this)}
-                              margin="normal"
-                              type="password"
-                          />
-                    </Column>
-                    <Column flexGrow={.15}>
-                        <Button variant="contained" onClick={this.login.bind(this)}>Signup</Button>
-                    </Column>
+                    <Row horizontal='around' flexGrow={1}>
+                        <Column flexGrow={.5}>
+                            <div>
+                                
+                            </div>
+                        </Column>
+                        
+                        <Column flexGrow={.5} horizontal='center'>
+                            <Row>   
+                            <div>
+                            <Card>
+                                <CardContent>
+                                        <Row flexGrow={1}>
+                                            <h1>Sign Up</h1>
+                                        </Row>
+                                        <Row flexGrow={1}>
+                                            <div>
+                                                <TextField
+                                                    id="fName"
+                                                    label="First Name"
+                                                    value={this.state.fName}
+                                                    onChange={this.onChange.bind(this)}
+                                                    margin="normal"
+                                                />
+                                            </div>
+                                        </Row>
+                                        <Row flexGrow={1}>
+                                            <div>
+                                                <TextField
+                                                    id="lName"
+                                                    label="Last Name"
+                                                    value={this.state.lName}
+                                                    onChange={this.onChange.bind(this)}
+                                                    margin="normal"
+                                                />
+                                            </div>
+                                        </Row>
+                                        <Row flexGrow={1}>
+                                        <div>
+                                        <TextField
+                                            id="username"
+                                            label="User Name"
+                                            value={this.state.username}
+                                            onChange={this.onChange.bind(this)}
+                                            margin="normal"
+                                        />
+                                        </div>
+                                        </Row>
+                                        <Row flexGrow={1}>
+                                        <TextField
+                                            id="password"
+                                            label="Password"
+                                            value={this.state.password}
+                                            onChange={this.onChange.bind(this)}
+                                            margin="normal"
+                                            type="password"
+                                        />
+                                        </Row>
+                                        <Button variant="contained" onClick={this.signup.bind(this)}>Signup</Button>
+                                </CardContent>
+                            </Card>
+                            </div>
+                            </Row>
+                        </Column>
+                    </Row>
                 </Column>
 
             </div>
