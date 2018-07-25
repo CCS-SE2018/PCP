@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../../node_modules/materialize-css/dist/css/materialize.css';
 
-
 class Body extends Component {
   constructor(props){
     super(props)
