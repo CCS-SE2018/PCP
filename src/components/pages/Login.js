@@ -12,7 +12,7 @@ class Login extends Component {
     constructor(props){
         super(props)
         this.state = {
-            userName : '',
+            username : '',
             password : '',
         };
     }
@@ -30,7 +30,7 @@ class Login extends Component {
 
     onChange(event){
         switch(event.target.id){
-            case 'name': this.setState({ userName : event.target.value}); break;
+            case 'name': this.setState({ username : event.target.value}); break;
             case 'password' : this.setState({ password : event.target.value}); break;
             default : console.log("this wasn't supposed to happen."); break;
         }
@@ -39,7 +39,7 @@ class Login extends Component {
 
     login(){
         console.log("button pressed!");
-        const credentials = { username : this.state.userName , password : this.state.password };
+        const credentials = { username : this.state.username , password : this.state.password };
         console.log(credentials);
     }
 
@@ -59,7 +59,7 @@ class Login extends Component {
                                         <TextField
                                             id="name"
                                             label="User Name"
-                                            value={this.state.userName}
+                                            value={this.state.username}
                                             onChange={this.onChange.bind(this)}
                                             margin="normal"
                                         />
