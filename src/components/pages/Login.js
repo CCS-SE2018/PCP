@@ -32,13 +32,17 @@ class Login extends Component {
         switch(event.target.id){
             case 'name': this.setState({ userName : event.target.value}); break;
             case 'password' : this.setState({ password : event.target.value}); break;
+            default : console.log("this wasn't supposed to happen."); break;
         }
         console.log(event.target);
     }
 
     login(){
-        alert("login button pressed!");
+        console.log("button pressed!");
+        const credentials = { username : this.state.userName , password : this.state.password };
+        console.log(credentials);
     }
+    
     render() {
         return (
         <div>
