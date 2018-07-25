@@ -42,7 +42,7 @@ class Login extends Component {
         const credentials = { username : this.state.userName , password : this.state.password };
         console.log(credentials);
     }
-    
+
     render() {
         return (
         <div>
@@ -57,11 +57,11 @@ class Login extends Component {
                                 <Column>
                                     <Column flexGrow={.85}>
                                         <TextField
-                                        id="name"
-                                        label="User Name"
-                                        value={this.state.userName}
-                                        onChange={this.onChange.bind(this)}
-                                        margin="normal"
+                                            id="name"
+                                            label="User Name"
+                                            value={this.state.userName}
+                                            onChange={this.onChange.bind(this)}
+                                            margin="normal"
                                         />
                                     </Column>
                                 </Column>
@@ -85,6 +85,7 @@ class Login extends Component {
                         </div>
                         </Card>
                     </Row>
+    
                     <Row>
                     </Row>
                 </Column>
