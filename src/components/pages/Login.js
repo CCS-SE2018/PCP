@@ -43,6 +43,16 @@ class Login extends Component {
         console.log(credentials);
     }
 
+    signup(){
+        console.log("signup button pressed!");
+        const credentials = { 
+            firstName : this.state.firstName,
+            lastName : this.state.lastName,
+            username : this.state.username,
+            password : this.state.password,
+        }
+        console.log(credentials);
+    }
     render() {
         return (
         <div>
@@ -57,7 +67,7 @@ class Login extends Component {
                                 <Column>
                                     <Column flexGrow={.85}>
                                         <TextField
-                                            id="name"
+                                            id="username"
                                             label="User Name"
                                             value={this.state.username}
                                             onChange={this.onChange.bind(this)}
