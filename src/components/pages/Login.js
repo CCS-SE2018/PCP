@@ -27,7 +27,7 @@ class Login extends Component {
     }
 
     getThings(){
-        fetch('https://jsonplaceholder.typicode.com/users')
+        fetch('http://localhost:3001/api/products')
         .then(response => response.json())
         .then(json => console.log(json));
 }
@@ -66,7 +66,7 @@ class Login extends Component {
         <div>
             <div class="container">
                 <Column>
-                    <Row>
+                    <Row horizontal='start'>
                         <Card>
                         <div style={{width : 750}}>
                         <CardContent>

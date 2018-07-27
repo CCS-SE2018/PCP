@@ -11,6 +11,16 @@ app.get('/api/customers', (req, res) => {
 
   res.json(customers);
 });
-const port = 5000;
 
-app.listen(port, () => console.log('Server started on port ${port}'));
+app.get('/api/products', (req, res) => {
+  const products = [
+    {id: 1, firstName: 'John', lastName: 'Doe'},
+    {id: 2, firstName: 'Steve', lastName: 'Smith'},
+    {id: 3, firstName: 'Mary', lastName: 'Swanson'}
+  ];
+
+  res.json(products);
+});
+const port = 3001;
+
+app.listen(port, () => console.log('Server started on port ' + port));
