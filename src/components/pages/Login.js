@@ -14,8 +14,10 @@ class Login extends Component {
         this.state = {
             fName : '',
             lName : '',
-            username : '',
-            password : '',
+            login_username : '',
+            signin_username : '',
+            login_password : '',
+            signin_password : '',
         };
     }
 
@@ -28,12 +30,14 @@ class Login extends Component {
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
         .then(json => console.log(json));
-    }
+}
 
     onChange(event){
         switch(event.target.id){
-            case 'username': this.setState({ username : event.target.value}); break;
-            case 'password' : this.setState({ password : event.target.value}); break;
+            case 'login_username' : this.setState({ login_username : event.target.value}); break;
+            case 'login_password' : this.setState({ login_password : event.target.value}); break;
+            case 'signin_username' : this.setState({ signin_username : event.target.value}); break;
+            case 'signin_password' : this.setState({ signin_password : event.target.value}); break;
             case 'fName' : this.setState({ fName : event.target.value}); break;
             case 'lName' : this.setState({ lName : event.target.value}); break;
             default : console.log("this wasn't supposed to happen."); break;
@@ -43,7 +47,7 @@ class Login extends Component {
 
     login(){
         console.log("button pressed!");
-        const credentials = { username : this.state.username , password : this.state.password };
+        const credentials = { username : this.state.login_username , password : this.state.login_password };
         console.log(credentials);
     }
 
@@ -52,8 +56,8 @@ class Login extends Component {
         const credentials = { 
             firstName : this.state.fName,
             lastName : this.state.lName,
-            username : this.state.username,
-            password : this.state.password,
+            username : this.state.signin_username,
+            password : this.state.signin_password,
         }
         console.log(credentials);
     }
@@ -70,9 +74,9 @@ class Login extends Component {
                                 <Column>
                                     <Column flexGrow={.85}>
                                         <TextField
-                                            id="username"
+                                            id="login_username"
                                             label="User Name"
-                                            value={this.state.username}
+                                            value={this.state.login_username}
                                             onChange={this.onChange.bind(this)}
                                             margin="normal"
                                         />
@@ -81,9 +85,9 @@ class Login extends Component {
                                 <Column>
                                     <Column flexGrow={.85}>
                                         <TextField
-                                            id="password"
+                                            id="login_password"
                                             label="Password"
-                                            value={this.state.password}
+                                            value={this.state.login_password}
                                             onChange={this.onChange.bind(this)}
                                             margin="normal"
                                             type="password"
@@ -139,9 +143,9 @@ class Login extends Component {
                                         <Row flexGrow={1}>
                                         <div>
                                         <TextField
-                                            id="username"
+                                            id="signin_username"
                                             label="User Name"
-                                            value={this.state.username}
+                                            value={this.state.signin_username}
                                             onChange={this.onChange.bind(this)}
                                             margin="normal"
                                         />
@@ -149,9 +153,9 @@ class Login extends Component {
                                         </Row>
                                         <Row flexGrow={1}>
                                         <TextField
-                                            id="password"
+                                            id="signin_password"
                                             label="Password"
-                                            value={this.state.password}
+                                            value={this.state.signin_password}
                                             onChange={this.onChange.bind(this)}
                                             margin="normal"
                                             type="password"
