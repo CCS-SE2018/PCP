@@ -25,6 +25,21 @@ app.get('/', (req, res) => {
   res.send('go to /products to see products')
 } );
 
+app.get('/products/add', (req, res) => {
+  const { productID, productName, productPrice, productAvailability, supermarketID } = req.query;
+  //const INSERT_PRODUCTS_QUERY = `INSERT INTO product (productID, productName, productPrice, productAvailability, supermarketID) VALUES (${productID}), ('${productName}'), (${productPrice}), ('${productAvailability}'), (${supermarketID})`;
+  const INSERT_PRODUCTS_QUERY = `INSERT INTO product (productID,productName, productPrice, productAvailability, supermarketID) VALUES (${productID},'${productName}', ${productPrice}, ${productAvailability}, ${supermarketID})`;
+  console.log(INSERT_PRODUCTS_QUERY);
+  connection.query(INSERT_PRODUCTS_QUERY, (err, results) => {
+    if(err) {
+      return res.send(err)
+    }
+    else {
+      return res.send('successfully added product')
+    }
+  });
+});
+
 app.get('/products', (req, res) => {
   connection.query(SELECT_ALL_PRODUCT_QUERY, (err, results) => {
     if(err) {
