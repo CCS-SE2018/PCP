@@ -25,18 +25,22 @@ class Login extends Component {
             signin_password : '',
             adminRoute: '',
             willAuth: false,
+            lastUserID : -1,
         };
     }
 
     componentWillMount(){
         console.log("componentWillMount");
-        this.getThings();
+        this.getMaxID();
     }
 
-    getThings(){
-        fetch('http://localhost:3001/api/products')
+    getMaxID(){
+        console.log("getMaxID");
+        fetch('http://localhost:4000/users/getCount')
         .then(response => response.json())
         .then(json => console.log(json));
+        //depending on the console.log, 
+        //update state.lastUserID by adding the result of getCount by 1
     }
 
     onChange(event){
@@ -98,7 +102,7 @@ class Login extends Component {
             username : this.state.signin_username,
             password : this.state.signin_password,
         };
-        console.log(credentials);
+        this.addUser(credentials);
     }
     render() {
         return (
@@ -215,6 +219,21 @@ class Login extends Component {
         </div>
         );
     }
+
+    addUser = (credentials) => {
+        console.log("addUser");
+        const fName  = credentials.firstName;
+        const lName = credentials.lastName;
+        const username = credentials.username;
+        const password = credentials.password;
+        const uID = this.state.lastUserID;
+
+        fetch(`http://localhost:4000/users/add?userID=${uID}&userName=${username}&userPassword=${password}&lastName=${lName}&firstName=${fName}`)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err))
+    }
+    
 }
 
 export default Login;

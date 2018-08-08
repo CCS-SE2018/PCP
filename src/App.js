@@ -19,8 +19,6 @@ class App extends Component {
     nextSupermarketID: '',
   }
 
-
-
 componentDidMount() {
   this.getProducts();
 }
@@ -67,16 +65,17 @@ setSupermarketID(){
 
 // Adds products to the database
 addProduct = _ => {
-    const  product  = this.state.product;
-    const productID = this.state.nextID;
-    const supermarketID = this.state.nextSupermarketID;
-    const productAvailability = this.state.nextProductAvailability;
-    console.log(product);
-    fetch(`http://localhost:4000/products/add?productID=${productID}&productName=${product.productName}&productPrice=${product.productPrice}&productAvailability=${productAvailability}&supermarketID=${supermarketID} `)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err))
+  const  product  = this.state.product;
+  const productID = this.state.nextID;
+  const supermarketID = this.state.nextSupermarketID;
+  const productAvailability = this.state.nextProductAvailability;
+  console.log(product);
+  fetch(`http://localhost:4000/products/add?productID=${productID}&productName=${product.productName}&productPrice=${product.productPrice}&productAvailability=${productAvailability}&supermarketID=${supermarketID} `)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err))
 }
+
 
   renderProduct =({ productID, productName}) => <div key={productID}>{productName}</div>
 
