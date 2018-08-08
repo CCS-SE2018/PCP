@@ -8,12 +8,18 @@ class App extends Component {
 
   state ={
     products: [],
+    users: {},
+    supermarkets: {},
     product: {
       productName: 'sample product',
       productPrice: 20
     },
     nextID : '',
+    nextProductAvailability: '',
+    nextSupermarketID: '',
   }
+
+
 
 componentDidMount() {
   this.getProducts();
@@ -27,6 +33,8 @@ getProducts = _ => {
   .then(response => {
     this.setState({ products: response.data})
     this.getMaxID();
+    this.setProductAvailability();
+    this.setSupermarketID();
   })
   .catch(err => console.error(err))
 }
@@ -42,18 +50,29 @@ getMaxID(){
       max = tempMax;  //max is now the temp max
     }
   }
-
   max++;  //we increment max by 1 (to avoid conflicts in product IDs in the database)
   console.log(max);
   this.setState({ nextID : max });  //sets the state of nextID to the maximum (with the increment)
+}
+
+setProductAvailability(){
+  var defaultValue = 1;
+  this.setState({nextProductAvailability : defaultValue}); //sets the state of nextProductAvailability to the default value
+}
+
+setSupermarketID(){
+  var defaultValue = 1;
+  this.setState({nextSupermarketID : defaultValue});  //sets the state of nextSupermarketID to the default value
 }
 
 // Adds products to the database
 addProduct = _ => {
     const  product  = this.state.product;
     const productID = this.state.nextID;
+    const supermarketID = this.state.nextSupermarketID;
+    const productAvailability = this.state.nextProductAvailability;
     console.log(product);
-    fetch(`http://localhost:4000/products/add?productID=${productID}&productName=${product.productName}&productPrice=${product.productPrice} `)
+    fetch(`http://localhost:4000/products/add?productID=${productID}&productName=${product.productName}&productPrice=${product.productPrice}&productAvailability=${productAvailability}&supermarketID=${supermarketID} `)
     .then(response => response.json())
     .then(response => console.log(response))
     .catch(err => console.error(err))
