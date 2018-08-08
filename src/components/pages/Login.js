@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 //import '../../../node_modules/materialize-css/dist/css/materialize.css';
 
-import { Column , Row } from 'simple-flexbox'
+import { Column , Row } from 'simple-flexbox';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+
+import {
+    Redirect,
+    Link
+  } from 'react-router-dom'
 
 class Login extends Component {
     constructor(props){
@@ -18,6 +23,8 @@ class Login extends Component {
             signin_username : '',
             login_password : '',
             signin_password : '',
+            adminRoute: '',
+            willAuth: false,
         };
     }
 
@@ -30,7 +37,7 @@ class Login extends Component {
         fetch('http://localhost:3001/api/products')
         .then(response => response.json())
         .then(json => console.log(json));
-}
+    }
 
     onChange(event){
         switch(event.target.id){
@@ -42,12 +49,44 @@ class Login extends Component {
             case 'lName' : this.setState({ lName : event.target.value}); break;
             default : console.log("this wasn't supposed to happen."); break;
         }
+        this.setState({willAuth : true})
         console.log(event.target);
+    }
+
+    auth(){
+        console.log("auth");
+
+        const credentials = { username : this.state.login_username , password : this.state.login_password };
+
+        if(this.state.willAuth){
+            if(credentials.username === "admin"){
+                console.log("---admin---");
+                this.setState({
+                    adminRoute: '/adminHome',
+                })
+            }else{
+                console.log("---not admin---");
+                this.setState({
+                    adminRoute: '',
+                })
+            }
+            this.setState({willAuth : false});
+        }
+
+        console.log(credentials);
     }
 
     login(){
         console.log("button pressed!");
+
         const credentials = { username : this.state.login_username , password : this.state.login_password };
+
+        if(credentials.username === "admin"){
+            console.log("admin");
+        }else{
+            console.log("not admin");
+        }
+
         console.log(credentials);
     }
 
@@ -58,7 +97,7 @@ class Login extends Component {
             lastName : this.state.lName,
             username : this.state.signin_username,
             password : this.state.signin_password,
-        }
+        };
         console.log(credentials);
     }
     render() {
@@ -95,7 +134,9 @@ class Login extends Component {
                                     </Column>
                                 </Column>
                                 <Column flexGrow={.15}>
-                                    <Button variant="contained" onClick={this.login.bind(this)}>Login</Button>
+                                    <Link to={this.state.adminRoute}>
+                                        <Button variant="contained" onClick={this.login.bind(this)} onPointerEnter={this.auth.bind(this)}>Login</Button>
+                                    </Link>
                                 </Column>
                             </Row>
                         </CardContent>

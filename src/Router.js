@@ -9,6 +9,7 @@ import {
 import HomePage from './components/pages/HomePage'
 import AboutPage from './components/pages/About'
 import LoginPage from './components/pages/Login'
+import AdminHome from './components/pages/Admin/AdminHome'
 
 import {Row, Column} from 'simple-flexbox'
 
@@ -25,6 +26,9 @@ const About = () => (
 )
 const Login = () => (
   <LoginPage />
+)
+const AdminH = () => (
+  <AdminHome />
 )
 
 
@@ -45,13 +49,16 @@ const RouterBoi = () => (
             </Row>
           </Row>
           <Column flexGrow='1' alignItems='end'>
-            <Link to="/login"><Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>Login/Signup</Button></Link>
+            <Link to="/login">
+              <Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>Login/Signup</Button>
+            </Link>
           </Column>
       </Row>
 
       <Route exact path="/" component={Home}/>
       <Route path="/about" component={About}/>
       <Route path="/login" component={Login}/>
+      <Route path="/adminHome" component={AdminH}/>
     </div>
   </Router>
 )

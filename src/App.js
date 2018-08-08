@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 //import '../node_modules/materialize-css/dist/css/materialize.css';
 
 import HomePage from './components/pages/HomePage'
@@ -7,9 +7,7 @@ import HomePage from './components/pages/HomePage'
 class App extends Component {
   render() {
     return (
-      <div>
-        <HomePage />
-      </div>
+      <HomePage />
     );
   }
 }
