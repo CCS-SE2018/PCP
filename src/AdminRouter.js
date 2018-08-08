@@ -11,6 +11,10 @@ import AboutPage from './components/pages/About'
 import LoginPage from './components/pages/Login'
 
 import AdminHome from './components/pages/Admin/AdminHome'
+import AdminMgs from './components/pages/Admin/AdminMsgs'
+import Products from './components/pages/Admin/MaintProducts'
+import Supermarkets from './components/pages/Admin/MaintSupermarkets'
+import Users from './components/pages/Admin/MaintUsers'
 
 import {Row, Column} from 'simple-flexbox'
 
@@ -21,6 +25,18 @@ import './App.css'
 //Links go here
 const AdminH = () => (
   <AdminHome />
+)
+const Msgs = () => (
+  <AdminMgs />
+)
+const Prod = () => (
+  <Products />
+)
+const SprM = () => (
+  <Supermarkets />
+)
+const Usr = () => (
+  <Users />
 )
 
 
@@ -36,27 +52,22 @@ const RouterBoi = () => (
               Administrator Page
             </Button>
           </Link>
-          <Link to="/about">
-            <Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>
-              PCP Profile
-            </Button>
-          </Link>
-          <Link to="/about">
+          <Link to="/admin/msg">
             <Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>
               Messages
             </Button>
           </Link>
-          <Link to="/about">
+          <Link to="/admin/prods">
             <Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>
               Manage Supermarkets
             </Button>
           </Link>
-          <Link to="/about">
+          <Link to="/admin/superM">
             <Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>
               Manage Products
             </Button>
           </Link>
-          <Link to="/about">
+          <Link to="/admin/users">
             <Button color="inherit" variant='contained' style={{backgroundColor : '#999999', color : 'white'}}>
               Manage Users
             </Button>
@@ -65,6 +76,10 @@ const RouterBoi = () => (
       </Column>
       
       <Route path="/admin/home" component={AdminH}/>
+      <Route path="/admin/msg" component={Msgs}/>
+      <Route path="/admin/prods" component={Prod}/>
+      <Route path="/admin/superM" component={SprM}/>
+      <Route path="/admin/users" component={Users}/>
     </div>
   </Router>
 )

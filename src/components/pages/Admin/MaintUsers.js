@@ -16,7 +16,7 @@ class HomePage extends Component {
                 flexGrow={1}>
                 <Row>
                     <Column>
-                        <h1>ADMIN HOME</h1>
+                        <h1>Users</h1>
                         
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel velit in neque congue imperdiet vitae sed arcu. Vestibulum vitae nisl lacinia, commodo enim non, tempus turpis. Sed interdum tincidunt felis, vel efficitur eros pellentesque et. Quisque imperdiet dui id arcu tristique, et hendrerit lacus scelerisque. Nam finibus ullamcorper orci vitae molestie. Nam hendrerit sed metus in luctus. Donec placerat pulvinar lacinia. Phasellus non velit vitae tellus vestibulum lobortis. Quisque vestibulum euismod scelerisque. Nunc scelerisque convallis velit sed dapibus. In maximus libero luctus, tristique dui quis, semper felis. Nam scelerisque metus mi, sit amet auctor magna varius in.</p>
 
