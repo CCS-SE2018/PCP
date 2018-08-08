@@ -9,7 +9,8 @@ import {
 import HomePage from './components/pages/HomePage'
 import AboutPage from './components/pages/About'
 import LoginPage from './components/pages/Login'
-import AdminHome from './components/pages/Admin/AdminHome'
+
+import AdminRouter from './AdminRouter'
 
 import {Row, Column} from 'simple-flexbox'
 
@@ -27,8 +28,8 @@ const About = () => (
 const Login = () => (
   <LoginPage />
 )
-const AdminH = () => (
-  <AdminHome />
+const AdminRtr = () => (
+  <AdminRouter />
 )
 
 
@@ -58,7 +59,7 @@ const RouterBoi = () => (
       <Route exact path="/" component={Home}/>
       <Route path="/about" component={About}/>
       <Route path="/login" component={Login}/>
-      <Route path="/adminHome" component={AdminH}/>
+      <Route path="/admin" component={AdminRtr}/>
     </div>
   </Router>
 )

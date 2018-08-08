@@ -62,7 +62,7 @@ class Login extends Component {
             if(credentials.username === "admin"){
                 console.log("---admin---");
                 this.setState({
-                    adminRoute: '/adminHome',
+                    adminRoute: '/admin/home',
                 })
             }else{
                 console.log("---not admin---");
