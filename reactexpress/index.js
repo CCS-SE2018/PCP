@@ -89,8 +89,8 @@ app.get('/products', (req, res) => {
 });
 
 // gets all products with the same name in the database
-app.get('/product/Apple', (req, res) => {
-  const SEARCH_A_PRODUCT_NAME = `SELECT * FROM product WHERE productName ='Apple'`
+app.get('/product/getProduct', (req, res) => {
+  const SEARCH_A_PRODUCT_NAME = `SELECT productName FROM product WHERE productName ='Apple'`
   connection.query(SEARCH_A_PRODUCT_NAME, (err, results) => {
     if(err) {
       return res.send(err)
@@ -116,7 +116,6 @@ app.get('/users', (req, res) => {
     }
   });
 });
-
 
 //gets the count of users from the database
 app.get('/users/getCount',(req,res) => {
