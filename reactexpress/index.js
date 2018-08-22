@@ -10,12 +10,11 @@ const SELECT_ALL_USER_QUERY = 'SELECT * FROM user';
 const SELECT_ALL_FEEDBACK_QUERY = 'SELECT * FROM feedback';
 
 
-
 const connection  =  mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'price_check_program'
+  database: 'pcp',
 });
 
 connection.connect(err => {
@@ -48,7 +47,7 @@ app.get('/products/add', (req, res) => {
 //adds data to users
 app.get('/users/add', (req, res) => {
   const { userID, userName, userPassword, lastName, firstName } = req.query;
-  const INSERT_USERS_QUERY = `INSERT INTO user (userID, userName, userPassword, lastName, firstName) VALUES (${userID},'${userName}',' ${userPassword}', '${lastName}', '${firstName}')`;
+  const INSERT_USERS_QUERY = `INSERT INTO user (userID, userName, userPassword, lastName, firstName) VALUES (${userID},'${userName}', '${userPassword}', '${lastName}', '${firstName}')`;
   console.log(INSERT_USERS_QUERY);
   connection.query(INSERT_USERS_QUERY, (err, results) => {
     if(err) {
@@ -107,6 +106,20 @@ app.get('/product/getProduct', (req, res) => {
 // gets all users in the database
 app.get('/users', (req, res) => {
   connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
+    if(err) {
+      return res.send(err)
+    }
+    else {
+      return res.json({
+        data: results
+      })
+    }
+  });
+});
+
+//gets the count of users from the database
+app.get('/users/getCount',(req,res) => {
+  connection.query("SELECT COUNT(DISTINCT userID) AS count FROM user", (err, results) => {
     if(err) {
       return res.send(err)
     }
