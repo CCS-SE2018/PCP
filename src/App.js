@@ -17,7 +17,10 @@ class App extends Component {
     users: [],
   }
 
-
+componentWillMount(){
+  this.getUsers();
+  console.log("componentWillMount");
+}
 
 componentDidMount() {
   this.getUsers();
@@ -30,10 +33,9 @@ getUsers = _ => {
   fetch('http://localhost:4000/users')
   .then(response => response.json())
   .then(response => {
+    console.log(response);
     this.setState({users: response.data});
     this.getMaxID();
-    this.setProductAvailability();
-    this.setSupermarketID();
   })
   .catch(err => console.error(err))
 }
@@ -57,7 +59,7 @@ getMaxID(){
 setProductAvailability(){
   var defaultValue = 1;
   this.setState({nextProductAvailability : defaultValue}); //sets the state of nextProductAvailability to the default value
-}
+
 */
 
 
@@ -79,7 +81,8 @@ addUser = _ => {
     .catch(err => console.error(err))
 }
 
-// Adds user to the database
+/*
+// Adds products to the database
 addProduct = _ => {
     const  product  = this.state.product;
     const productID = this.state.nextID;
@@ -93,7 +96,6 @@ addProduct = _ => {
 }
 
   renderUser =({ userID, userName}) => <div key={userID}>{userName}</div>
-=======
 setProductAvailability(){
   var defaultValue = 1;
   this.setState({nextProductAvailability : defaultValue}); //sets the state of nextProductAvailability to the default value
@@ -116,9 +118,9 @@ addProduct = _ => {
   .then(response => console.log(response))
   .catch(err => console.error(err))
 }
+*/
 
-
-  renderProduct =({ productID, productName}) => <div key={productID}>{productName}</div>
+  renderUser =({usersID, userName}) => <div key={usersID}>{userName}</div>
 
 
   render() {
@@ -126,7 +128,6 @@ addProduct = _ => {
     return (
       <div className="App">
         {users.map(this.renderUser)}
-
         <div>
         <br />
         <p> Username</p>
