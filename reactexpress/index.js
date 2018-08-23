@@ -14,7 +14,7 @@ const connection  =  mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'pcp',
+  database: 'price_check_program',
 });
 
 connection.connect(err => {
