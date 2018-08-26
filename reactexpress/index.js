@@ -107,6 +107,23 @@ app.get('/product/getProduct', (req, res) => {
   });
 });
 
+//gets the username and password
+app.get('/users/getUser', (req, res) => {
+  const {userName, userPassword} = req.query;
+  console.log(req.query)
+  const GET_USERS_QUERY = `Select userName, userPassword From user
+  WHERE userName = '${userName}' AND userPassword =  '${userPassword}')`;
+  console.log(INSERT_USERS_QUERY);
+  connection.query(INSERT_USERS_QUERY, (err, results) => {
+    if(err) {
+      return res.send(err)
+    }
+    else {
+      return res.send('successfully added user')
+    }
+  });
+});
+
 // gets all users in the database
 app.get('/users', (req, res) => {
   connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
