@@ -32,7 +32,8 @@ app.get('/', (req, res) => {
 //adds data to products
 app.get('/products/add', (req, res) => {
   const { productID, productName, productPrice, productAvailability, supermarketID } = req.query;
-  const INSERT_PRODUCTS_QUERY = `INSERT INTO product (productID,productName, productPrice, productAvailability, supermarketID) VALUES (${productID},'${productName}', ${productPrice}, ${productAvailability}, ${supermarketID})`;
+  const INSERT_PRODUCTS_QUERY = `INSERT INTO product (productID,productName, productPrice, productAvailability, supermarketID)
+  VALUES (${productID},'${productName}', ${productPrice}, ${productAvailability}, ${supermarketID})`;
   console.log(INSERT_PRODUCTS_QUERY);
   connection.query(INSERT_PRODUCTS_QUERY, (err, results) => {
     if(err) {
@@ -48,7 +49,8 @@ app.get('/products/add', (req, res) => {
 app.get('/users/add', (req, res) => {
   const { userID, userName, userPassword,  firstName, lastName } = req.query;
   console.log(req.query)
-  const INSERT_USERS_QUERY = `INSERT INTO user (userID, userName, userPassword, firstName, lastName) VALUES (${userID},'${userName}', '${userPassword}', '${firstName}', '${lastName}')`;
+  const INSERT_USERS_QUERY = `INSERT INTO user (userID, userName, userPassword, firstName, lastName)
+  VALUES (${userID},'${userName}', '${userPassword}', '${firstName}', '${lastName}')`;
   console.log(INSERT_USERS_QUERY);
   connection.query(INSERT_USERS_QUERY, (err, results) => {
     if(err) {
@@ -63,7 +65,8 @@ app.get('/users/add', (req, res) => {
 //adds data to supermarket
 app.get('/supermarkets/add', (req, res) => {
   const { supermarketID, supermarketName, supermarketAddress} = req.query;
-  const INSERT_SUPERMARKETS_QUERY = `INSERT INTO user (supermarketID, supermarketName, supermarketAddress) VALUES (${supermarketID},'${supermarketName}', '${supermarketAddress}')`;
+  const INSERT_SUPERMARKETS_QUERY = `INSERT INTO user (supermarketID, supermarketName, supermarketAddress)
+  VALUES (${supermarketID},'${supermarketName}', '${supermarketAddress}')`;
   console.log(INSERT_SUPERMARKETS_QUERY);
   connection.query(INSERT_SUPERMARKETS_QUERY, (err, results) => {
     if(err) {
