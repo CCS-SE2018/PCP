@@ -46,8 +46,9 @@ app.get('/products/add', (req, res) => {
 
 //adds data to users
 app.get('/users/add', (req, res) => {
-  const { userID, userName, userPassword, lastName, firstName } = req.query;
-  const INSERT_USERS_QUERY = `INSERT INTO user (userID, userName, userPassword, lastName, firstName) VALUES (${userID},'${userName}', '${userPassword}', '${lastName}', '${firstName}')`;
+  const { userID, userName, userPassword,  firstName, lastName } = req.query;
+  console.log(req.query)
+  const INSERT_USERS_QUERY = `INSERT INTO user (userID, userName, userPassword, firstName, lastName) VALUES (${userID},'${userName}', '${userPassword}', '${firstName}', '${lastName}')`;
   console.log(INSERT_USERS_QUERY);
   connection.query(INSERT_USERS_QUERY, (err, results) => {
     if(err) {
@@ -119,7 +120,7 @@ app.get('/users', (req, res) => {
 
 //gets the count of users from the database
 app.get('/users/getCount',(req,res) => {
-  connection.query("SELECT COUNT(DISTINCT userID) AS count FROM user", (err, results) => {
+  connection.query("SELECT MAX(userID) AS count FROM user", (err, results) => {
     if(err) {
       return res.send(err)
     }
@@ -137,7 +138,7 @@ app.get('/supermarkets', (req, res) => {
     if(err) {
       return res.send(err)
     }
-    else {
+    else {321
       return res.json({
         data: results
       })

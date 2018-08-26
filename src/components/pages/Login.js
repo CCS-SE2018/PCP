@@ -25,7 +25,7 @@ class Login extends Component {
             signin_password : '',
             adminRoute: '',
             willAuth: false,
-            lastUserID : -1,
+            nextID : -1,
         };
     }
 
@@ -38,8 +38,8 @@ class Login extends Component {
         console.log("getMaxID");
         fetch('http://localhost:4000/users/getCount')
         .then(response => response.json())
-        .then(json => console.log(json));
-        //depending on the console.log, 
+        .then(json => this.setState({nextID : (json.data[0].count + 1)}));
+        //depending on the console.log,
         //update state.lastUserID by adding the result of getCount by 1
     }
 
@@ -96,14 +96,25 @@ class Login extends Component {
 
     signup(){
         console.log("signup button pressed!");
-        const credentials = { 
-            firstName : this.state.fName,
-            lastName : this.state.lName,
+        const credentials = {
+            fName : this.state.fName,
+            lName : this.state.lName,
             username : this.state.signin_username,
             password : this.state.signin_password,
         };
-        this.addUser(credentials);
+        //this.addUser(credentials);
+        const userID = this.state.nextID;
+        console.log(userID);
+        console.log(credentials);
+        fetch(`http://localhost:4000/users/add?userID=${userID}&userName=${credentials.username}&userPassword=${credentials.password}&firstName=${credentials.fName}&lastName=${credentials.lName} `)
+        .then(response => response.json())
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => console.error(err))
+        this.getMaxID();
     }
+
     render() {
         return (
         <div>
@@ -151,12 +162,12 @@ class Login extends Component {
                     <Row horizontal='around' flexGrow={1}>
                         <Column flexGrow={.5}>
                             <div>
-                                
+
                             </div>
                         </Column>
-                        
+
                         <Column flexGrow={.5} horizontal='center'>
-                            <Row>   
+                            <Row>
                             <div>
                             <Card>
                                 <CardContent>
@@ -233,7 +244,7 @@ class Login extends Component {
         .then(response => console.log(response))
         .catch(err => console.error(err))
     }
-    
+
 }
 
 export default Login;
