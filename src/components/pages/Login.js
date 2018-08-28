@@ -128,8 +128,7 @@ class Login extends Component {
     console.log(credentials);
     fetch(`http://localhost:4000/users/add?userID=${userID}&userName=${
       credentials.username
-    }&
-          userPassword=${credentials.password}&firstName=${
+    }&userPassword=${credentials.password}&firstName=${
       credentials.fName
     }&lastName=${credentials.lName} `)
       .then(response => response.json())
@@ -139,20 +138,6 @@ class Login extends Component {
       .catch(err => console.error(err));
     this.getMaxID();
   }
-
-  addUser = credentials => {
-    console.log("addUser");
-    const fName = credentials.firstName;
-    const lName = credentials.lastName;
-    const username = credentials.username;
-    const password = credentials.password;
-    const uID = this.state.lastUserID;
-    fetch(`http://localhost:4000/users/add?userID=${uID}&userName=${username}&
-            userPassword=${password}&lastName=${lName}&firstName=${fName}`)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
-  };
 
   render() {
     return (
