@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 //import '../../../node_modules/materialize-css/dist/css/materialize.css';
 
-import { Column, Row } from "simple-flexbox";
+import { Column, Row } from 'simple-flexbox';
 
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
