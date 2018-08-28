@@ -109,7 +109,7 @@ class Login extends Component {
           this.setState({ users: response.data });
           this.getMaxID();
         })
-        .catch(err => cosole.error(err));
+        .catch(err => console.error(err));
     }
     console.log(credentials);
   }
