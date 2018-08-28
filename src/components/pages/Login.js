@@ -14,13 +14,13 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fName: "",
-      lName: "",
-      login_username: "",
-      signin_username: "",
-      login_password: "",
-      signin_password: "",
-      adminRoute: "",
+      fName: '',
+      lName: '',
+      login_username: '',
+      signin_username: '',
+      login_password: '',
+      signin_password: '',
+      adminRoute: '',
       willAuth: false,
       nextID: -1
     };
@@ -42,22 +42,22 @@ class Login extends Component {
 
   onChange(event) {
     switch (event.target.id) {
-      case "login_username":
+      case 'login_username':
         this.setState({ login_username: event.target.value });
         break;
-      case "login_password":
+      case 'login_password':
         this.setState({ login_password: event.target.value });
         break;
-      case "signin_username":
+      case 'signin_username':
         this.setState({ signin_username: event.target.value });
         break;
-      case "signin_password":
+      case 'signin_password':
         this.setState({ signin_password: event.target.value });
         break;
-      case "fName":
+      case 'fName':
         this.setState({ fName: event.target.value });
         break;
-      case "lName":
+      case 'lName':
         this.setState({ lName: event.target.value });
         break;
       default:
@@ -78,7 +78,7 @@ class Login extends Component {
       if (credentials.username === "admin") {
         console.log("---admin---");
         this.setState({
-          adminRoute: "/admin/home"
+          adminRoute: '/admin/home'
         });
       } else {
         console.log("---not admin---");
@@ -159,12 +159,12 @@ class Login extends Component {
       <div>
         <div class="container">
           <Column>
-            <Row horizontal="start">
+            <Row horizontal='start'>
               <Card>
                 <div style={{ width: 750 }}>
                   <CardContent>
                     <Row
-                      vertical="center"
+                      vertical='center'
                       horizontal="space-around"
                       flexGrow={1}
                     >
@@ -208,12 +208,12 @@ class Login extends Component {
               </Card>
             </Row>
 
-            <Row horizontal="around" flexGrow={1}>
+            <Row horizontal='around' flexGrow={1}>
               <Column flexGrow={0.5}>
                 <div />
               </Column>
 
-              <Column flexGrow={0.5} horizontal="center">
+              <Column flexGrow={0.5} horizontal='center'>
                 <Row>
                   <div>
                     <Card>
