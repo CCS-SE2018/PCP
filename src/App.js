@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 //import '../node_modules/materialize-css/dist/css/materialize.css';
-import "./App.css";
-import HomePage from "./components/pages/HomePage";
+import './App.css';
+import HomePage from './components/pages/HomePage';
 //TODO make this a router
 
 class App extends Component {
   state = {
     user: {
-      userName: "",
-      userPassword: "",
-      firstName: "",
-      lastName: ""
+      userName: '',
+      userPassword: '',
+      firstName: '',
+      lastName: ''
     },
-    nextID: "",
+    nextID: '',
     users: []
   };
 
@@ -29,7 +29,7 @@ class App extends Component {
   // retreives the productName from table product
   getUsers = _ => {
     console.log("getUsers");
-    fetch("http://localhost:4000/users")
+    fetch('http://localhost:4000/users')
       .then(response => response.json())
       .then(response => {
         console.log(response);
