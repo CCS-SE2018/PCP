@@ -1,19 +1,19 @@
-const express = require("express");
-const cors = require("cors");
-const mysql = require("mysql");
+const express = require('express');
+const cors = require('cors');
+const mysql = require('mysql');
 
 const app = express();
 
-const SELECT_ALL_PRODUCT_QUERY = "SELECT * FROM product";
-const SELECT_ALL_SUPERMARKET_QUERY = "SELECT * FROM supermarket";
-const SELECT_ALL_USER_QUERY = "SELECT * FROM user";
-const SELECT_ALL_FEEDBACK_QUERY = "SELECT * FROM feedback";
+const SELECT_ALL_PRODUCT_QUERY = 'SELECT * FROM product';
+const SELECT_ALL_SUPERMARKET_QUERY = 'SELECT * FROM supermarket';
+const SELECT_ALL_USER_QUERY ='SELECT * FROM user';
+const SELECT_ALL_FEEDBACK_QUERY = 'SELECT * FROM feedback';
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "price_check_program"
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'price_check_program'
 });
 
 connection.connect(err => {
@@ -24,12 +24,12 @@ connection.connect(err => {
 
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("type /products to see products");
+app.get(''/'', (req, res) => {
+  res.send('type /products to see products');
 });
 
 //adds data to products
-app.get("/products/add", (req, res) => {
+app.get('/products/add', (req, res) => {
   const {
     productID,
     productName,
@@ -44,13 +44,13 @@ app.get("/products/add", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully added product");
+      return res.send('successfully added product');
     }
   });
 });
 
 //adds data to users
-app.get("/users/add", (req, res) => {
+app.get('/users/add', (req, res) => {
   const { userID, userName, userPassword, firstName, lastName } = req.query;
   console.log(req.query);
   const INSERT_USERS_QUERY = `INSERT INTO user (userID, userName, userPassword, firstName, lastName)
@@ -60,13 +60,13 @@ app.get("/users/add", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully added user");
+      return res.send('successfully added user');
     }
   });
 });
 
 //adds data to supermarket
-app.get("/supermarkets/add", (req, res) => {
+app.get('/supermarkets/add', (req, res) => {
   const { supermarketID, supermarketName, supermarketAddress } = req.query;
   const INSERT_SUPERMARKETS_QUERY = `INSERT INTO user (supermarketID, supermarketName, supermarketAddress)
   VALUES (${supermarketID},'${supermarketName}', '${supermarketAddress}')`;
@@ -75,13 +75,13 @@ app.get("/supermarkets/add", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully added supermarket");
+      return res.send('successfully added supermarket');
     }
   });
 });
 
 // gets all products in the database
-app.get("/products", (req, res) => {
+app.get('/products', (req, res) => {
   connection.query(SELECT_ALL_PRODUCT_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
@@ -94,7 +94,7 @@ app.get("/products", (req, res) => {
 });
 
 // gets all products with the same name in the database
-app.get("/product/getProduct", (req, res) => {
+app.get('/product/getProduct', (req, res) => {
   const SEARCH_A_PRODUCT_NAME = `SELECT productName FROM product WHERE productName ='Apple'`;
   connection.query(SEARCH_A_PRODUCT_NAME, (err, results) => {
     if (err) {
@@ -108,7 +108,7 @@ app.get("/product/getProduct", (req, res) => {
 });
 
 //gets the username and password
-app.get("/users/getUser", (req, res) => {
+app.get('/users/getUser', (req, res) => {
   const { userName, userPassword } = req.query;
   console.log(req.query);
   const GET_USERS_QUERY = `Select userName, userPassword From user
@@ -118,13 +118,13 @@ app.get("/users/getUser", (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      return res.send("successfully added user");
+      return res.send('successfully added user');
     }
   });
 });
 
 // gets all users in the database
-app.get("/users", (req, res) => {
+app.get('/users', (req, res) => {
   connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
@@ -137,7 +137,7 @@ app.get("/users", (req, res) => {
 });
 
 //gets the count of users from the database
-app.get("/users/getCount", (req, res) => {
+app.get('/users/getCount', (req, res) => {
   connection.query("SELECT MAX(userID) AS count FROM user", (err, results) => {
     if (err) {
       return res.send(err);
@@ -150,7 +150,7 @@ app.get("/users/getCount", (req, res) => {
 });
 
 // gets all supermarkets in the database
-app.get("/supermarkets", (req, res) => {
+app.get('/supermarkets', (req, res) => {
   connection.query(SELECT_ALL_SUPERMARKET_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
@@ -164,7 +164,7 @@ app.get("/supermarkets", (req, res) => {
 });
 
 //gets all feedbacks in the database
-app.get("/feedbacks", (req, res) => {
+app.get('/feedbacks', (req, res) => {
   connection.query(SELECT_ALL_FEEDBACK_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
