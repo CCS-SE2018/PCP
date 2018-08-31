@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
-
+const bcrypt = require('bcrypt');
 const app = express();
 
 const SELECT_ALL_PRODUCT_QUERY = 'SELECT * FROM product';
@@ -15,6 +15,24 @@ const connection = mysql.createConnection({
   password: 'root',
   database: 'price_check_program',
 });
+
+// A function that hashes a password 
+function hashPassword(candidatePassword){
+  bcrypt.genSalt(10, function (err, salt) {
+    if (err) {
+      return console.log(err);
+    }
+    bcrypt.hash(candidatePassword, salt, function (err, hashedPassword) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(hashedPassword);
+    });
+  });
+}
+
+//tests the hash function
+hashPassword('password');
 
 connection.connect(err => {
   if (err) {
