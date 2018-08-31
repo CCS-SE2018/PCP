@@ -12,27 +12,21 @@ class App extends Component {
       firstName: '',
       lastName: ''
     },
-<<<<<<< HEAD
-    nextID : '',
-    users: [],
-  }
-
-componentWillMount(){
-  this.getUsers();
-  console.log("componentWillMount");
-}
-=======
     nextID: '',
     users: []
   };
->>>>>>> 37f57e34cee84782f3292a895ceebd7e87a1e920
+
 
   componentWillMount() {
     this.getUsers();
     console.log("componentWillMount");
   }
 
-<<<<<<< HEAD
+  componentDidMount() {
+    this.getUsers();
+    console.log("ComponentDidMount");
+  }
+
 // retreives the productName from table product
 getUsers = _ => {
   console.log("getUsers");
@@ -45,12 +39,8 @@ getUsers = _ => {
   })
   .catch(err => console.error(err))
 }
-=======
-  componentDidMount() {
-    this.getUsers();
-    console.log("ComponentDidMount");
-  }
->>>>>>> 37f57e34cee84782f3292a895ceebd7e87a1e920
+
+
 
   // retreives the productName from table product
   getUsers = _ => {
@@ -87,10 +77,6 @@ setProductAvailability(){
   var defaultValue = 1;
   this.setState({nextProductAvailability : defaultValue}); //sets the state of nextProductAvailability to the default value
 <<<<<<< HEAD
-
-*/
-=======
->>>>>>> 37f57e34cee84782f3292a895ceebd7e87a1e920
 
 */
 
@@ -167,12 +153,9 @@ addProduct = _ => {
 }
 */
 
-<<<<<<< HEAD
-  renderUser =({usersID, userName}) => <div key={usersID}>{userName}</div>
 
-=======
   renderUser = ({ usersID, userName }) => <div key={usersID}>{userName}</div>;
->>>>>>> 37f57e34cee84782f3292a895ceebd7e87a1e920
+
 
   render() {
     const { users, user } = this.state;
