@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
   database: 'price_check_program'
 });
 
-// A function that hashes a password 
+// A function that hashes a password
 function hashPassword(candidatePassword){
   bcrypt.genSalt(10, function (err, salt) {
     if (err) {
@@ -46,7 +46,7 @@ app.get(''/'', (req, res) => {
   res.send('type /products to see products');
 });
 
-//adds data to products
+//Adding a poduct to product table
 app.get('/products/add', (req, res) => {
   const {
     productID,
@@ -67,7 +67,7 @@ app.get('/products/add', (req, res) => {
   });
 });
 
-//adds data to users
+//Adding a user to user table
 app.get('/users/add', (req, res) => {
   const { userID, userName, userPassword, firstName, lastName } = req.query;
   console.log(req.query);
@@ -83,7 +83,7 @@ app.get('/users/add', (req, res) => {
   });
 });
 
-//adds data to supermarket
+//adding supermarket to supermarket table
 app.get('/supermarkets/add', (req, res) => {
   const { supermarketID, supermarketName, supermarketAddress } = req.query;
   const INSERT_SUPERMARKETS_QUERY = `INSERT INTO user (supermarketID, supermarketName, supermarketAddress)
@@ -98,20 +98,9 @@ app.get('/supermarkets/add', (req, res) => {
   });
 });
 
-// gets all products in the database
-app.get('/products', (req, res) => {
-  connection.query(SELECT_ALL_PRODUCT_QUERY, (err, results) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.json({
-        data: results
-      });
-    }
-  });
-});
 
-// gets all products with the same name in the database
+
+// gretrieves a single product from product table
 app.get('/product/getProduct', (req, res) => {
   const SEARCH_A_PRODUCT_NAME = `SELECT productName FROM product WHERE productName ='Apple'`;
   connection.query(SEARCH_A_PRODUCT_NAME, (err, results) => {
@@ -125,7 +114,7 @@ app.get('/product/getProduct', (req, res) => {
   });
 });
 
-//gets the username and password
+//retrieves the username and password of a user
 app.get('/users/getUser', (req, res) => {
   const { userName, userPassword } = req.query;
   console.log(req.query);
@@ -141,7 +130,61 @@ app.get('/users/getUser', (req, res) => {
   });
 });
 
-// gets all users in the database
+
+
+//gets the count of users from the database
+app.get('/users/getCount', (req, res) => {
+  connection.query("SELECT MAX(userID) AS count FROM user", (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.json({
+        data: results
+      });
+    }
+  });
+});
+
+//gets the count of supermarkets  from the database
+app.get('/supermarkets/getCount', (req, res) => {
+  connection.query("SELECT MAX(supermarketID) AS count FROM supermarket", (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.json({
+        data: results
+      });
+    }
+  });
+});
+
+//gets the count of products from the database
+app.get('/users/getCount', (req, res) => {
+  connection.query("SELECT MAX(productID) AS count FROM product", (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.json({
+        data: results
+      });
+    }
+  });
+});
+
+//gets the count of feedbacks from the database
+app.get('/feedbacks/getCount', (req, res) => {
+  connection.query("SELECT MAX(feedbackID) AS count FROM feedback", (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.json({
+        data: results
+      });
+    }
+  });
+});
+
+// retrieves all the users in a database
 app.get('/users', (req, res) => {
   connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
     if (err) {
@@ -154,9 +197,9 @@ app.get('/users', (req, res) => {
   });
 });
 
-//gets the count of users from the database
-app.get('/users/getCount', (req, res) => {
-  connection.query("SELECT MAX(userID) AS count FROM user", (err, results) => {
+// retrieves all products from product table
+app.get('/products', (req, res) => {
+  connection.query(SELECT_ALL_PRODUCT_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
     } else {
