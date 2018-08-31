@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
   database: 'price_check_program'
 });
 
-// A function that hashes a password
+// A function that hashes a password 
 function hashPassword(candidatePassword){
   bcrypt.genSalt(10, function (err, salt) {
     if (err) {
