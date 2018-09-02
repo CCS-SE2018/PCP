@@ -32,8 +32,6 @@ const AdminRtr = () => (
   <AdminRouter />
 )
 
-
-
 //Start of Router
 const RouterBoi = () => (
   <Router>
