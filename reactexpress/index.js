@@ -46,6 +46,7 @@ app.get(''/'', (req, res) => {
   res.send('type /products to see products');
 });
 
+//Query for adding data
 //Adding a poduct to product table
 app.get('/products/add', (req, res) => {
   const {
@@ -98,11 +99,26 @@ app.get('/supermarkets/add', (req, res) => {
   });
 });
 
+//adding feedback to feedback table
+app.get('/feedback/add', (req, res) => {
+  const {feedbackID, userID, productName, productID } = req.query;
+  const INSER_FEEDBACKS_QUERY = `INSERT INTO feedback(feedbackID, userID, productName, productID)
+  VALUES (${feedbackID}, ${userID}, '${productName}', ${productID})`;
+  console.log(INSERT_FEEDBACKS_QUERY);
+  connection.query(INSERT_FEEDBACKS_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send('successfully added feedback');
+    }
+  })
+})
 
-
+//Query for retrieving specific data in a table
 // gretrieves a single product from product table
 app.get('/product/getProduct', (req, res) => {
-  const SEARCH_A_PRODUCT_NAME = `SELECT productName FROM product WHERE productName ='Apple'`;
+  const {productName} = req.query;
+  const SEARCH_A_PRODUCT_NAME = `SELECT productName, productID, productPrice FROM product WHERE productName LIKE '%${productName}%' `;
   connection.query(SEARCH_A_PRODUCT_NAME, (err, results) => {
     if (err) {
       return res.send(err);
@@ -118,7 +134,7 @@ app.get('/product/getProduct', (req, res) => {
 app.get('/users/getUser', (req, res) => {
   const { userName, userPassword } = req.query;
   console.log(req.query);
-  const GET_USERS_QUERY = `Select userName, userPassword From user
+  const GET_USERS_QUERY = `SELECT userName, userPassword FROM user
   WHERE userName = '${userName}' AND userPassword =  '${userPassword}')`;
   console.log(INSERT_USERS_QUERY);
   connection.query(INSERT_USERS_QUERY, (err, results) => {
@@ -129,8 +145,6 @@ app.get('/users/getUser', (req, res) => {
     }
   });
 });
-
-
 
 //gets the count of users from the database
 app.get('/users/getCount', (req, res) => {
@@ -184,6 +198,8 @@ app.get('/feedbacks/getCount', (req, res) => {
   });
 });
 
+
+//Query for retrieving an entire table
 // retrieves all the users in a database
 app.get('/users', (req, res) => {
   connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
@@ -216,7 +232,6 @@ app.get('/supermarkets', (req, res) => {
     if (err) {
       return res.send(err);
     } else {
-      321;
       return res.json({
         data: results
       });
@@ -226,7 +241,7 @@ app.get('/supermarkets', (req, res) => {
 
 //gets all feedbacks in the database
 app.get('/feedbacks', (req, res) => {
-  connection.query(SELECT_ALL_FEEDBACK_QUERY, (err, results) => {
+  connection.query('SELECT f.feedbackID, f.productName, usr.firstName FROM feedback f INNER JOIN user usr WHERE f.userID = usr.userID', (err, results) => {
     if (err) {
       return res.send(err);
     } else {

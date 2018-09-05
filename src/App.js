@@ -13,18 +13,31 @@ class App extends Component {
       lastName: ''
     },
     nextID: '',
-    users: []
+    users: [],
+    products: [],
+    product: {
+      productName: '',
+      productPrice: '',
+    },
+    response: [],
+
   };
 
   componentWillMount() {
     this.getUsers();
+    this.getProducts();
+    this.getProduct();
     console.log("componentWillMount");
   }
 
   componentDidMount() {
     this.getUsers();
+    this.getProducts();
+    this.getProduct();
     console.log("ComponentDidMount");
   }
+
+
 
   // retreives the productName from table product
   getUsers = _ => {
@@ -39,6 +52,38 @@ class App extends Component {
       .catch(err => console.error(err));
   };
 
+  getProducts =_=> {
+    console.log("getProducts");
+    fetch('http://localhost:4000/product/getProduct')
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      this.setState({ products: response.data });
+      this.getMaxID();
+    })
+    .catch(err =>console.error(err));
+  };
+
+  //for products
+  getMaxID() {
+    var max = -1; //gets -1 as a temporary max ID
+    console.log(this.state.products);
+    var products = this.state.products; //saves the products array into a variable
+    var size = this.state.products.length; //saves the length of the products array into a variable
+    for (var i = 0; i < size; i++) {
+      // for loop to traverse the array
+      var tempMax = this.state.products[i].productID; //assigns the current productID to a variable (tempMax)
+      if (tempMax > max) {
+        //if tempMax is greater than the current max,
+        max = tempMax; //max is now the temp max
+      }
+    }
+    max++; //we increment max by 1 (to avoid conflicts in product IDs in the database)
+    console.log(max);
+    this.setState({ nextID: max }); //sets the state of nextID to the maximum (with the increment)
+  }
+
+// for users
   getMaxID() {
     var max = -1; //gets -1 as a temporary max ID
     console.log(this.state.users);
@@ -87,6 +132,20 @@ setSupermarketID(){
       .catch(err => console.error(err));
   };
 
+  getProduct =_=> {
+    const product = this.state.product;
+    console.log(product);
+    fetch(`http://localhost:4000/product/getProduct?productName=${product.productName} `)
+    .then(response => response.json())
+    .then(response => {
+      console.log(response.data);
+      this.setState({
+        response: response.data,
+      });
+    })
+    .catch(err => console.error(err));
+  };
+
   /*
 // Adds products to the database
 addProduct = _ => {
@@ -128,18 +187,21 @@ addProduct = _ => {
 
   renderUser = ({ usersID, userName }) => <div key={usersID}>{userName}</div>;
 
+  renderProduct = p => <div key = {p.productID}>{p.productName} {p.productPrice} php</div>;
+
   render() {
     const { users, user } = this.state;
+    const {product, products, response} = this.state;
     return (
       <div className="App">
-        {users.map(this.renderUser)}
+        {response.map(this.renderProduct)}
         <div>
           <br />
-          <p> Username</p>
+          <p> Product Name</p>
           <input
-            value={user.userName}
+            value={product.productName}
             onChange={e =>
-              this.setState({ user: { ...user, userName: e.target.value } })
+              this.setState({ product: { ...product, productName: e.target.value } })
             }
           />
           <br />
@@ -168,7 +230,7 @@ addProduct = _ => {
             }
           />
           <br />
-          <button onClick={this.addUser}>Register </button>
+          <button onClick={this.getProduct}>Register </button>
         </div>
       </div>
     );

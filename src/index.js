@@ -8,8 +8,8 @@ import Table from './Table';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-    //<App />,
-    <Router />,
+    <App />,
+    //<Router />,
     // <Table />,
     document.getElementById('root')
 );
