@@ -172,7 +172,7 @@ app.get('/products/update', (req, res) => {
 //updates users
 app.get('/users/update', (req, res) => {
   const { userID, userName, firstName, lastName } = req.query;
-  const UPDATE_USERS_QUERY = `UPDATE user SET userName = '${userName}', firstName = '${lastName}', lastName = '${lastName}' WHERE userID = ${userID}`;
+  const UPDATE_USERS_QUERY = `UPDATE user SET userName = '${userName}', firstName = '${firstName}', lastName = '${lastName}' WHERE userID = ${userID}`;
   connection.query(UPDATE_USERS_QUERY, (err, results) => {
     if (err) {
       return res.json({
