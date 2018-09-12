@@ -72,7 +72,7 @@ app.get('/products/add', (req, res) => {
 //adding a user
 app.get('/users/add', (req, res) => {
   const { userID, userName, userPassword, firstName, lastName } = req.query;
-  
+
   const salt = 10;
   bcrypt.hash(userPassword, salt, function(err, hash) {
     if (err) {
@@ -171,28 +171,20 @@ app.get('/products/update', (req, res) => {
 
 //updates users
 app.get('/users/update', (req, res) => {
-  const { userID, userName, userPassword, firstName, lastName } = req.query;
-
-  const salt = 10;
-  bcrypt.hash(userPassword, salt, function(err, hash) {
-    if(err) {
-      return console.log(err);
+  const { userID, userName, firstName, lastName } = req.query;
+  const UPDATE_USERS_QUERY = `UPDATE user SET userName = '${userName}', firstName = '${lastName}', lastName = '${lastName}' WHERE userID = ${userID}`;
+  connection.query(UPDATE_USERS_QUERY, (err, results) => {
+    if (err) {
+      return res.json({
+        msg: 'error',
+        res : err
+      });
+    } else {
+      return res.json({
+        msg: 'success',
+        res : results
+      });
     }
-    const UPDATE_USERS_QUERY = `UPDATE user SET (userName, userPassword, firstName, lastName)
-    VALUES ('${userName}', '${hash}', '${firstName}', '${lastName}') WHERE userID = ${userID}`;
-    connection.query(UPDATE_USERS_QUERY, (err, results) => {
-      if (err) {
-        return res.json({
-          msg: 'error',
-          res : err
-        });
-      } else {
-        return res.json({
-          msg: 'success',
-          res : results
-        });
-      }
-    });
   });
 });
 
@@ -261,10 +253,10 @@ app.get('/products/delete', (req, res) => {
 app.get('/supermarkets/delete', (req, res) => {
   const{supermarketID} = req.query;
   const DELETE_SUPERMARKETS_QUERY = `DELETE FROM supermarket WHERE supermarketID = ${supermarketID}`;
-  connection.query(DELETE_SUPERMARKETS_QUERY, (err, results) => {
+   connection.query(DELETE_SUPERMARKETS_QUERY, (err, results) => {
     if (err) {
-      return res.json({
-        msg: 'error',
+       return res.json({
+         msg: 'error',
         res : err
       });
     } else {
@@ -518,7 +510,7 @@ app.get('/users/auth', (req, res) => {
   connection.query(GET_USERS_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
-    } 
+    }
     try{
       bcrypt.compare(userPassword, results[0].userPassword, function(err, isCorrect) {
         if (err) {
@@ -555,7 +547,7 @@ app.get('/users/check', (req, res) => {
   connection.query(GET_USERS_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
-    } 
+    }
     try{
       if(isEmpty(results)){
         return res.json({
