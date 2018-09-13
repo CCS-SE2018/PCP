@@ -10,7 +10,7 @@ const SELECT_ALL_USER_QUERY ='SELECT userID, userName, firstName, lastName FROM 
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: 'root',
   database: 'price_check_program'
 });
 
